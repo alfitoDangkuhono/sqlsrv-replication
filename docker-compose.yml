@@ -37,3 +37,7 @@ services:
 networks:
   replication:
     driver: bridge
+
+volumes:
+  sqlserverdata:
+    driver: local
