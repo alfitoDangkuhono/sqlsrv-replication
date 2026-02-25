@@ -8,7 +8,7 @@ services:
       SA_PASSWORD: "P@ssw0rd" # !! Change this to a strong password
       ACCEPT_EULA: "Y" # Required to accept the end-user license agreement
     volumes:
-      - sqlserverdata:/var/opt/mssql # Persist data to a named volume
+      - publisher_data:/var/opt/mssql # Persist data to a named volume
 
   subcriber:
     image: mcr.microsoft.com/mssql/server:2022-latest # Use the official Microsoft SQL Server image
@@ -19,7 +19,7 @@ services:
       SA_PASSWORD: "P@ssw0rd" # !! Change this to a strong password
       ACCEPT_EULA: "Y" # Required to accept the end-user license agreement
     volumes:
-      - sqlserverdata:/var/opt/mssql # Persist data to a named volume
+      - subscriber_data:/var/opt/mssql # Persist data to a named volume
   
   distributor:
     image: mcr.microsoft.com/mssql/server:2022-latest # Use the official Microsoft SQL Server image
@@ -30,7 +30,7 @@ services:
       SA_PASSWORD: "P@ssw0rd" # !! Change this to a strong password
       ACCEPT_EULA: "Y" # Required to accept the end-user license agreement
     volumes:
-      - sqlserverdata:/var/opt/mssql # Persist data to a named volume
+      - distributor_data:/var/opt/mssql # Persist data to a named volume
 
 networks:
   replication:
