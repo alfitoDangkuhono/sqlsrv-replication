@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   publisher:
     image: mcr.microsoft.com/mssql/server:2022-latest # Use the official Microsoft SQL Server image
