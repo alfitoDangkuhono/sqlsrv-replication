@@ -1,1 +1,1 @@
-# sqlsrv-replication
+# Example for config docker compose replication database sqlsrv
