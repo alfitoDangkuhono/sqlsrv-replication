@@ -34,5 +34,6 @@ services:
     volumes:
       - sqlserverdata:/var/opt/mssql # Persist data to a named volume
 
-  networks:
-    - replication
+networks:
+  replication:
+    driver: bridge
