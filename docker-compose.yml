@@ -1,36 +1,45 @@
 services:
   publisher:
-    image: mcr.microsoft.com/mssql/server:2022-latest # Use the official Microsoft SQL Server image
+    image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: publisher
     ports:
-      - "1451:1433" # Map host port 1433 to container port 1433
+      - "1451:1433"
     environment:
-      SA_PASSWORD: "P@ssw0rd" # !! Change this to a strong password
-      ACCEPT_EULA: "Y" # Required to accept the end-user license agreement
+      SA_PASSWORD: "P@ssw0rd"
+      ACCEPT_EULA: "Y"
+      MSSQL_AGENT_ENABLED: "true"
     volumes:
-      - publisher_data:/var/opt/mssql # Persist data to a named volume
+      - publisher_data:/var/opt/mssql
+    networks:
+      - replication
 
-  subcriber:
-    image: mcr.microsoft.com/mssql/server:2022-latest # Use the official Microsoft SQL Server image
-    container_name: subcriber
+  subscriber:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: subscriber
     ports:
-      - "1452:1433" # Map host port 1433 to container port 1433
+      - "1452:1433"
     environment:
-      SA_PASSWORD: "P@ssw0rd" # !! Change this to a strong password
-      ACCEPT_EULA: "Y" # Required to accept the end-user license agreement
+      SA_PASSWORD: "P@ssw0rd"
+      ACCEPT_EULA: "Y"
+      MSSQL_AGENT_ENABLED: "true"
     volumes:
-      - subscriber_data:/var/opt/mssql # Persist data to a named volume
-  
+      - subscriber_data:/var/opt/mssql
+    networks:
+      - replication
+
   distributor:
-    image: mcr.microsoft.com/mssql/server:2022-latest # Use the official Microsoft SQL Server image
+    image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: distributor
     ports:
-      - "1453:1433" # Map host port 1433 to container port 1433
+      - "1453:1433"
     environment:
-      SA_PASSWORD: "P@ssw0rd" # !! Change this to a strong password
-      ACCEPT_EULA: "Y" # Required to accept the end-user license agreement
+      SA_PASSWORD: "P@ssw0rd"
+      ACCEPT_EULA: "Y"
+      MSSQL_AGENT_ENABLED: "true"
     volumes:
-      - distributor_data:/var/opt/mssql # Persist data to a named volume
+      - distributor_data:/var/opt/mssql
+    networks:
+      - replication
 
 networks:
   replication:
