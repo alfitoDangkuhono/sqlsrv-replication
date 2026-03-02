@@ -1,5 +1,5 @@
 services:
-  publisher:
+  publisher-db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: publisher
     ports:
@@ -13,7 +13,7 @@ services:
     networks:
       - replication
 
-  subscriber:
+  subscriber-db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: subscriber
     ports:
@@ -27,7 +27,7 @@ services:
     networks:
       - replication
 
-  distributor:
+  distributor-db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: distributor
     ports:
