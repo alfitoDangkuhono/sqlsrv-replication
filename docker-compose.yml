@@ -27,11 +27,15 @@ services:
       SA_PASSWORD: "P@ssw0rd"
       ACCEPT_EULA: "Y"
       MSSQL_AGENT_ENABLED: "true"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 200M
     volumes:
       - subscriber_data:/var/opt/mssql
     networks:
       - replication
-
   # distributor-db:
   #   image: mcr.microsoft.com/mssql/server:2022-latest
   #   container_name: distributor-db
@@ -52,5 +56,4 @@ networks:
 
 volumes:
   publisher_data:
-  subscriber_data:
-  # distributor_data:
+  subscriber_data: # distributor_data:
