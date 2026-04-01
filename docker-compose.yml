@@ -15,8 +15,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.50'
-          memory: 500M
+          cpus: '1.0'
+          memory: 2g
 
   subscriber-db:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -30,8 +30,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.50'
-          memory: 500M
+          cpus: '1.0'
+          memory: 2g
     volumes:
       - subscriber_data:/var/opt/mssql
     networks:
