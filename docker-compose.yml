@@ -12,6 +12,11 @@ services:
       - publisher_data:/var/opt/mssql
     networks:
       - replication
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 200M
 
   subscriber-db:
     image: mcr.microsoft.com/mssql/server:2022-latest
